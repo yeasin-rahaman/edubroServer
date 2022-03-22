@@ -186,6 +186,19 @@ async function run() {
       res.send(allBooks);
     });
 
+
+
+    app.delete('/deleteBook/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await allBooksCollection.deleteOne(query);
+      res.json(result);
+
+
+    })
+
+
+
     // POST syllabus
     app.post('/postSyllabus', async (req, res) => {
       const allSyllabus = req.body;
@@ -216,6 +229,16 @@ async function run() {
       });
       res.send(result);
     });
+
+
+    // Delete Syllabus
+    app.delete('/deleteSyllabus/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await allSyllabusCollection.deleteOne(query);
+      res.json(result);
+    })
+
 
 
 
@@ -293,6 +316,17 @@ async function run() {
       res.send(result)
     })
 
+    app.delete('/deleteLab/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await allLabsCollection.deleteOne(query);
+      res.json(result);
+
+
+    })
+
+
+
 
 
     // POST blogs
@@ -315,7 +349,6 @@ async function run() {
       // const allBlogs = req.body;
 
 
-
     });
 
 
@@ -325,6 +358,17 @@ async function run() {
       const allBlogs = await cursor.toArray();
       res.send(allBlogs);
     });
+
+
+    app.delete('/deleteBlog/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await allBlogsCollection.deleteOne(query);
+      res.json(result);
+
+
+    })
+
 
 
 
@@ -387,6 +431,14 @@ async function run() {
       res.send(result);
     });
 
+    // Delete Note 
+    app.delete('/deleteNote/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await allNotesCollection.deleteOne(query);
+      res.json(result);
+    })
+
 
     // add user 
     app.post("/users", async (req, res) => {
@@ -437,6 +489,17 @@ async function run() {
       const result = await allQuestionsCollection.find({ email: req.params.email }).toArray()
       res.send(result)
     })
+
+
+    // Delete questions 
+    app.delete('/deleteQuestion/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await allQuestionsCollection.deleteOne(query);
+      res.json(result);
+    })
+
+
 
 
     // // get my note
